@@ -53,7 +53,7 @@ export default function SoldItemDetails(props) {
     console.log(detail)
     setLoadingState('loaded') 
   }
-  
+  if (loadingState !='loaded') return (<img src="./logo.gif " style={{paddingLeft:"300px"}} /> )
   if (loadingState === 'loaded' && !details.length) return (<h1 className="py-10 px-20 text-3xl">No assets owned</h1>)
   return (
         <Details data={details} />

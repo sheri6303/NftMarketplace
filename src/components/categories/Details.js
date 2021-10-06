@@ -7,16 +7,14 @@ import { data } from "autoprefixer";
 import Favourite from "../Favourite";
 export default function Details(props)
 {
-  
-  
-    return (
+  return (
         <section class="text-gray-700 body-font overflow-hidden bg-white">
         {
           props.data.map((nft, i) => (
       <div key={i} class="container px-5 py-24 mx-auto">
         
         <div  class="lg:w-4/5 mx-auto flex flex-wrap">
-        {nft.category=="image"? <img src={nft.image} className="rounded" /> :
+        {nft.category=="image"? <img src={nft.image} className="rounded"  /> :
                     nft.category=="audio" ?
                         <audio 
                     autoPlay={false}
@@ -37,7 +35,7 @@ export default function Details(props)
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Name Of Nft :  {nft.name}</h1>
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Category   : {nft.category}</h1>
-            <h1 class="text-gray-900 text-2xl title-font font-medium mb-1">Owner Address   : {nft.owner}</h1>
+            <h1 class="text-gray-900 text-2xl title-font font-medium mb-1">Seller Address   : {nft.seller}</h1>
     
             
             <p class="leading-relaxed " >Description : {nft.description} </p>

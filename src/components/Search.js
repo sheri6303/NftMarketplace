@@ -34,7 +34,7 @@ export default function Search(props) {
   }
   if (loadingState === 'loaded' && !Search.length) return (<h1 className="px-20 py-10 text-3xl">No item found with name {searchData} in the  marketplace</h1>)
     return (
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-20">
         <div className="px-4" >
               <AllNfts data={Search} function={buyNft} />  
             </div>

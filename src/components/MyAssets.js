@@ -61,7 +61,7 @@ export default function MyAssets() {
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No assets owned</h1>)
   return (
     
-    <div className="flex justify-center ">
+    <div className="flex justify-center pt-20 ">
       
       <div className="p-4">
       <h1 className="text-4xl font-bold text-green">Assets You Purchased</h1>
@@ -70,15 +70,14 @@ export default function MyAssets() {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
                   <div>
-                {nft.category=="image"? <img src={nft.image} className="rounded" /> :
+                {nft.category=="image"? <img src={nft.image} className="rounded" style={{height:"300px"}} /> :
                 nft.category=="audio"?
-                    <audio 
-                autoPlay={false}
-                style={{  width: "100%"}} 
-                className="mt-20"
-                controls={true} >
-               <source type="audio/mp3" src={nft.image} />
-               </audio> :
+                <div style={{height:"300px"}} >
+                <img 
+                src='vlc.png'style={{height:"300px"}} />
+                   
+              </div>
+                     :
                 <video
                 autoPlay={false}
                 style={{  width: "100%"}} 

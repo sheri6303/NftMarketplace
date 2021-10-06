@@ -15,35 +15,32 @@ export default function CreateItem() {
   const history = useHistory();
   const [fileUrl, setFileUrl] = useState(null)
   const [formInput, updateFormInput] = useState({ price: '', category: '',name: '', description: ''  })
-  //const router = useRouter()
 
+
+// File uploading 
   async function onChange(e) {
     const file = e.target.files[0]
-    const {category}=formInput
     try {
-      const added = await client.add(
-        file,
-        {
-          progress: (prog) => console.log(`received: ${prog}`)
-        }
-      )
+      const added = await client.add(file)
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      console.log(url)
       setFileUrl(url)
-    } catch (error) {
+      alert("File uploaded to " + url)
+    } 
+    catch (error) {
       console.log('Error uploading file: ', error)
-    }  
+    }
   }
+
   async function onCategoryChange(e){
      updateFormInput({ ...formInput, category: e.target.value })
   }
   async function createMarket() {
     
     const { name, category, price ,description } = formInput
-    console.log(name)
-    console.log(category)
-    if (!name || !description || !price || !fileUrl ) return
-    console.log("hi")
+    if (name=="" || description=="" || price=="" || fileUrl== null)
+    alert("please Fill all the fields .")
+    else
+    {
     /* first, upload to IPFS */
     const data = JSON.stringify({
       name, description, image: fileUrl ,category
@@ -51,11 +48,12 @@ export default function CreateItem() {
     try {
       const added = await client.add(data)
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
+      /* after file is uploaded to IPFS, pass the URL to save it on Etherium  */
       createSale(url)
     } catch (error) {
       console.log('Error uploading file: ', error)
-    }  
+    }
+  }  
   }
 
   async function createSale(url) {
@@ -85,9 +83,9 @@ export default function CreateItem() {
   }
 
   return (
-    <div className="flex justify-center">
+    <div  className="flex justify-center bg-green-300" style={{paddingTop: '70px'}}> 
       <div className="w-1/2 flex flex-col pb-12">
-        <h1 className="text-4xl font-bold text-black-100	">Create New Item For Sale  </h1>
+        <h1 className="text-4xl font-bold 	">Create New Item For Sale  </h1>
         <input 
           placeholder="Item Name"
           className="mt-8 border rounded p-4"
@@ -114,15 +112,18 @@ export default function CreateItem() {
         <input
           type="file"
           name="Asset"
-          className="my-4"
+          className="my-4  "
           onChange={onChange}
         />
+        
+
+          
         {
           fileUrl && (
             <img className="rounded mt-4" width="350" src={fileUrl} />
           )
         }
-        <button onClick={createMarket} className="font-bold mt-4 bg-blue-500 text-white rounded p-4 shadow-lg">
+        <button onClick={createMarket} className="font-bold mt-4 bg-green-500 text-white rounded p-4 shadow-lg">
           Create Digital Asset
         </button>
       </div>

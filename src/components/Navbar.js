@@ -36,7 +36,7 @@ function Navbar() {
    }
   return (
 <div>
-      <nav className="  top-0 inset-x-0 z-50 h-16 text-white bg-green-800 font-medium flex justify-between items-center shadow-lg" >
+      <nav className="fixed w-full   top-0 inset-x-0 z-50 h-16 text-white bg-green-800 font-medium flex justify-between items-center shadow-lg" >
       <Link to="/">
           <a className='inline-flex items-center  '>
             <svg
